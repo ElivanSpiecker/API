@@ -41,13 +41,13 @@ public class PostController {
     }
 
     // d. GET /post/{id} - consulta 1 post (id numérico)
-    @GetMapping("/{id:\\d+}")
+    @GetMapping("/id/{id:\\d+}")
     public Dtos.PostResponse get(@PathVariable Long id) {
         return toResponse(service.get(id));
     }
 
     // e. GET /post/{exp} - consulta posts por expressão nos comentários (quando não for número)
-    @GetMapping("/{exp}")
+    @GetMapping("/exp/{exp}")
     public List<Dtos.PostResponse> search(@PathVariable String exp) {
         return service.searchByComentario(exp).stream()
                 .sorted(Comparator.comparing(Post::getDataHora).reversed())
